@@ -31,7 +31,7 @@ export const config: Options.Testrunner = {
       "appium:deviceName": "Pixel 4A",
       "appium:app": join(process.cwd(), "/apps/ApiDemos-debug.apk"),
       // "appium:app": join(process.cwd(), "/apps/marketPlace.apk"),
-      "appium:platformVersion": "13",
+      "appium:platformVersion": "8.1",
       "appium:automationName": "UiAutomator2",
     },
   ],
