@@ -2,12 +2,12 @@ name: Android_Native_Emulator
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 jobs:
   Android_Native_Emulator:
     runs-on: macOS-12
     timeout-minutes: 60
-    steps: 
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -75,11 +75,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: "yarn"
       - run: yarn
       - name: setup dependencies
         run: |
-          npm install
+          yarn generate
       - name: Set up Appium
         run: |
           npm install --global appium@next
