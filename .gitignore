@@ -1,7 +1,7 @@
 node_modules
 /allure-results/
 .DS_Store
-# /apps/SauceLabs.app 
+/apps/SauceLabs.app 
 /apps/marketPlace.apk
 
 
