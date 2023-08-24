@@ -65,6 +65,8 @@ export const config: Options.Testrunner = {
       "appium:platformVersion": "16.4",
       "appium:automationName": "XCUITest",
       "appium:udid": "B009CB4B-B41D-41D1-9E12-30D18A6E200D",
+      "appium:newCommandTimeout": 3600,
+      "appium:waitForIdleTimeout": 5000,
     },
 
     // 'appium:bundleId':'com.saucelabs.mydemoapp.rn',

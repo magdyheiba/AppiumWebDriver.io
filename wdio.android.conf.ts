@@ -33,7 +33,6 @@ export const config: Options.Testrunner = {
       // "appium:app": join(process.cwd(), "/apps/marketPlace.apk"),
       "appium:platformVersion": "13",
       "appium:automationName": "UiAutomator2",
-      "appium:noReset": true,
     },
   ],
   //
