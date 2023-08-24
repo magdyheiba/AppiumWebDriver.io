@@ -1,0 +1,25 @@
+{
+  "name": "my-new-project",
+  "type": "module",
+  "devDependencies": {
+    "@types/jasmine": "^4.3.5",
+    "@types/jquery": "^3.5.16",
+    "@wdio/allure-reporter": "^8.10.4",
+    "@wdio/appium-service": "^8.15.4",
+    "@wdio/cli": "^8.10.5",
+    "@wdio/jasmine-framework": "^8.15.4",
+    "@wdio/local-runner": "^8.15.4",
+    "@wdio/mocha-framework": "^8.15.4",
+    "@wdio/spec-reporter": "^8.15.0",
+    "appium-uiautomator2-driver": "^1.43.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "wdio-json-reporter": "^3.0.0"
+  },
+  "scripts": {
+    "generate": "npm install --force",
+    "wdio": "wdio run ./wdio.conf.ts",
+    "androidtests": "wdio run wdio.android.conf.ts",
+    "iostests": "wdio run wdio.ios.conf.ts"
+  }
+}
