@@ -61,8 +61,8 @@ jobs:
           yarn generate
       - name: Check emulator booting status
         run: |
-          chmod a+x ./sscript/check_emu.sh
-          ./sscript/check_emu.sh
+          chmod a+x ./mainActivityCheck.sh
+          ./mainActivityCheck.sh
 
       - name: Install APK
         run: |
