@@ -47,7 +47,7 @@ env:
   ANDROID_ARCH: x86_64
   ANDROID_TARGET: google_apis
   ANDROID_BUILD_TOOLS_VERSION: 33.0.2
-  ANDROID_SDK_PACKAGES: system-images;android-32;google_apis;x86_64 platforms;android-32 build-tools;34.0.0-rc4 platform-tools emulator
+  ANDROID_SDK_PACKAGES: system-images;android-30;google_apis;x86_64 platforms;android-30 build-tools;33.0.2 platform-tools emulator
   EMULATOR_TIMEOUT: 350
   BOOT_TIMEOUT: 700
 
