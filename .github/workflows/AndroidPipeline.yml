@@ -1,120 +1,85 @@
-name: Android_Native_Emulator
+name: Wdio-MobileApp-Emulator
 
 on:
   pull_request:
     branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+env:
+  ANDROID_ARCH: x86_64
+  ANDROID_TARGET: google_apis
+  API_LEVEL: 30
+  ANDROID_BUILD_TOOLS_VERSION: 33.0.2
+  ANDROID_SDK_PACKAGES: system-images;android-30;google_apis;x86_64 platforms;android-30 build-tools;33.0.2 platform-tools emulator
+  EMULATOR_TIMEOUT: 350
+  EMULATOR_NAME: nexus
+
 jobs:
-  Android_Native_Emulator:
-    runs-on: macOS-12
-    timeout-minutes: 60
+  webriverIo-emulator:
+    timeout-minutes: 20
+
+    runs-on: macos-latest
+
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - uses: hankolsen/setup-android-tools@master
-        with:
-          packages: |
-            cmdline-tools;latest
-            emulator
-            patcher;v4
-            platform-tools
-            build-tools;27.0.0
-            platforms;android-27
-            skiaparser;3
-            sources;android-27
-            system-images;android-27;default;x86_64
-            system-images;android-30;google_apis;x86
-            platforms;android-30
-          cache: true
+      - name: Add avdmanager and sdkmanager to system PATH
+        run: |
+          echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/${{ env.ANDROID_BUILD_TOOLS_VERSION }}" >> $GITHUB_PATH
 
-      - name: Create Android emulator
+      - name: Install Sdk
         run: |
-          # Delete old file
-          brew cleanup --prune=1 -s
-          rm -rf "$(brew --cache)"
-          # Install HAXM
-          #brew install intel-haxm
-          # Install AVD files
-          echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-30;google_apis;x86'
-          echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --licenses
-          # Create emulator
-          $ANDROID_HOME/tools/bin/avdmanager create avd -n Pixel_API_30_DEFAULT_x86_64 -d pixel --package 'system-images;android-30;google_apis;x86'
-          $ANDROID_HOME/emulator/emulator -list-avds
-          if false; then
-          emulator_config=~/.android/avd/Pixel_API_30_DEFAULT_x86_64.avd/config.ini
-          # The following madness is to support empty OR populated config.ini files,
-          # the state of which is dependant on the version of the emulator used (which we don't control),
-          # so let's be defensive to be safe.
-          # Replace existing config (NOTE we're on MacOS so sed works differently!)
-          sed -i .bak 's/hw.lcd.density=.*/hw.lcd.density=420/' "$emulator_config"
-          sed -i .bak 's/hw.lcd.height=.*/hw.lcd.height=1920/' "$emulator_config"
-          sed -i .bak 's/hw.lcd.width=.*/hw.lcd.width=1080/' "$emulator_config"
-          # Or, add new config
-          if ! grep -q "hw.lcd.density" "$emulator_config"; then
-            echo "hw.lcd.density=420" >> "$emulator_config"
-          fi
-          if ! grep -q "hw.lcd.height" "$emulator_config"; then
-            echo "hw.lcd.height=1920" >> "$emulator_config"
-          fi
-          if ! grep -q "hw.lcd.width" "$emulator_config"; then
-            echo "hw.lcd.width=1080" >> "$emulator_config"
-          fi
-          echo "Emulator settings ($emulator_config)"
-          cat "$emulator_config"
-          fi
-      - name: List all sdkmanager options
+          yes Y | sdkmanager --licenses
+          sdkmanager --install ${ANDROID_SDK_PACKAGES}
+
+      - name: Build emulator
         run: |
-          $ANDROID_HOME/tools/bin/sdkmanager --list
-      - name: Update Android emulator
+          echo "no" | avdmanager --verbose create avd --force -n $EMULATOR_NAME --abi "${ANDROID_TARGET}/${ANDROID_ARCH}" -k "system-images;android-${API_LEVEL};${ANDROID_TARGET};${ANDROID_ARCH}"
+
+      - name: Launch emulator
         run: |
-          echo "$PATH"
-          echo $PATH
-          export PATH=$PATH:$ANDROID_HOME/tools/bin
-          export PATH=$PATH:$ANDROID_HOME/emulator/emulator
-          echo "$PATH"
-          echo $PATH
-          $ANDROID_HOME/tools/bin/sdkmanager --update
+          chmod +x ./start_emu_headless.sh
+          EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "yarn"
       - run: yarn
-      - name: setup dependencies
+      - name: Install appium
+        run: |
+          npm i -g appium@next --unsafe-perm=true --allow-root
+          appium driver install uiautomator2
+
+      - name: Install dependencies
         run: |
           yarn generate
-      - name: Set up Appium
-        run: |
-          npm install --global appium@next
-          appium driver install uiautomator2
-          appium driver install xcuitest
-      - name: Run Appium Server
-        run: appium --log-timestamp --log appiumServer.log &
 
-      - name: Poll for Appium Server to Start
-        run: |
-          until $(curl --output /dev/null --silent --head --fail http://localhost:4723/sessions); do
-            sleep 5
-          done
-      - name: Start Android emulator
-        run: |
-          echo "Starting emulator and waiting for boot to complete...."
-          ls -la $ANDROID_HOME/emulator
-          nohup $ANDROID_HOME/tools/emulator -avd Pixel_API_30_DEFAULT_x86_64 -gpu host -no-audio -no-boot-anim -camera-back none -camera-front none -qemu -m 2048 2>&1 &
-          $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do echo "wait..."; sleep 1; done; input keyevent 82'
-          #$ANDROID_HOME/platform-tools/adb wait-for-device
-          echo "Emulator has finished booting"
-          $ANDROID_HOME/platform-tools/adb devices
-          sleep 30
-          screencapture screenshot.jpg
-          #$ANDROID_HOME/platform-tools/adb exec-out screencap -p > emulator.png
-          #osascript click.as
-      - name: Run tests
+      - name: Execute the test
         continue-on-error: true
-        run: yarn androidtests
+        run: |
+          yarn androidtests
 
-      - name: Upload Allure Report as Pipeline Artifact
+      - name: Generate report
         if: always()
-        uses: actions/upload-artifact@v3
+        run: |
+          npx allure generate report/allure-results
+
+      - name: Setup Pages
+        if: always()
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: Android_Native_Emulator_Allure
-          path: "allure-results"
+          path: "./allure-report"
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        id: deployment
+        uses: actions/deploy-pages@v2
