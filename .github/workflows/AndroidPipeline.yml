@@ -40,7 +40,7 @@ permissions:
 env:
   IPHONE_MODEL: ${{ inputs.IOS_simulator }}
   IOS_VERSION: 16.2
-  API_LEVEL: 32
+  API_LEVEL: 30
   EMULATOR_NAME: Nexus
   EMULATOR_DEVICE: ${{ inputs.android_emulator }}
   EMULATOR_VERSION: 12
