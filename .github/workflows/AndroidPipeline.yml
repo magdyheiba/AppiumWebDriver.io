@@ -1,30 +1,131 @@
-name: Wdio-MobileApp-Emulator
+name: Wdio-x-native
 
 on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      e2e:
+        type: choice
+        description: Select a platform
+        required: true
+        options:
+          - xplatform
+          - ios
+          - android
+        default: xplatform
+      android_emulator:
+        type: choice
+        description: Select an android device
+        required: true
+        options:
+          - Nexus 5
+          - Nexus 6
+        default: Nexus 5
+      IOS_simulator:
+        type: choice
+        description: Select an Iphone device
+        required: true
+        options:
+          - iPhone 8
+          - iPhone 12 Pro
+          - iPhone 14 Pro
+        default: iPhone 8
+
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 env:
+  IPHONE_MODEL: ${{ inputs.IOS_simulator }}
+  IOS_VERSION: 16.2
+  API_LEVEL: 32
+  EMULATOR_NAME: Nexus
+  EMULATOR_DEVICE: ${{ inputs.android_emulator }}
+  EMULATOR_VERSION: 12
   ANDROID_ARCH: x86_64
   ANDROID_TARGET: google_apis
-  API_LEVEL: 30
-  ANDROID_BUILD_TOOLS_VERSION: 33.0.2
-  ANDROID_SDK_PACKAGES: system-images;android-30;google_apis;x86_64 platforms;android-30 build-tools;33.0.2 platform-tools emulator
+  ANDROID_BUILD_TOOLS_VERSION: 34.0.0-rc4
+  ANDROID_SDK_PACKAGES: system-images;android-32;google_apis;x86_64 platforms;android-32 build-tools;34.0.0-rc4 platform-tools emulator
   EMULATOR_TIMEOUT: 350
-  EMULATOR_NAME: nexus
   BOOT_TIMEOUT: 700
 
 jobs:
-  webriverIo-emulator:
-    timeout-minutes: 20
+  ios:
+    runs-on:
+      - macos-13
+    if: ${{ contains(github.event.inputs.e2e, 'ios') || contains(github.event.inputs.e2e, 'xplatform') }}
+    strategy:
+      matrix:
+        os: [IOS]
+        device: [$IPHONE_MODEL]
+        version: [$IOS_VERSION]
+    steps:
+      - uses: actions/checkout@v3
 
-    runs-on: macos-latest
+      - name: Export environment variables
+        run: |
+          export IPHONE_MODEL=$IPHONE_MODEL
+          export IOS_VERSION=$IOS_VERSION
 
+      - name: check simulator list
+        run: xcrun simctl list
+
+      - name: Start simulator
+        run: |
+          chmod a+x ./scripts/start_simu.sh
+          ./scripts/start_simu.sh
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "yarn"
+      - run: yarn
+      - name: Install appium
+        run: |
+          npm i -g appium@next --unsafe-perm=true --allow-root
+          appium driver install uiautomator2
+      - name: Install dependencies
+        run: |
+          yarn generate
+
+      - name: Check simulator booting status
+        run: |
+          chmod a+x ./scripts/check_simu.sh
+          ./scripts/check_simu.sh
+
+      - name: Execute the test
+        run: |
+          yarn iostests
+
+      - name: Generate report
+        if: always()
+        run: |
+          npx allure generate report/allure-results
+
+      - name: Setup Pages
+        if: always()
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "./allure-report"
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        id: deployment
+        uses: actions/deploy-pages@v2
+
+  android:
+    runs-on: macos-13
+    if: ${{ contains(github.event.inputs.e2e, 'android') || contains(github.event.inputs.e2e, 'xplatform') }}
+    strategy:
+      matrix:
+        os: [Android]
+        emulator_name: [$EMULATOR_NAME]
     steps:
       - uses: actions/checkout@v3
 
@@ -39,12 +140,12 @@ jobs:
 
       - name: Build emulator
         run: |
-          echo "no" | avdmanager --verbose create avd --force -n $EMULATOR_NAME --abi "${ANDROID_TARGET}/${ANDROID_ARCH}" -k "system-images;android-${API_LEVEL};${ANDROID_TARGET};${ANDROID_ARCH}"
+          echo "no" | avdmanager --verbose create avd --force -n $EMULATOR_NAME --device "$EMULATOR_DEVICE" --abi "${ANDROID_TARGET}/${ANDROID_ARCH}" -k "system-images;android-${API_LEVEL};${ANDROID_TARGET};${ANDROID_ARCH}"
 
       - name: Launch emulator
         run: |
-          chmod +x ./start_emu_headless.sh
-          EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
+          chmod +x ./scripts/start_emu.sh
+          ./scripts/start_emu.sh
 
       - uses: actions/setup-node@v3
         with:
@@ -55,24 +156,23 @@ jobs:
         run: |
           npm i -g appium@next --unsafe-perm=true --allow-root
           appium driver install uiautomator2
-
       - name: Install dependencies
         run: |
           yarn generate
+
       - name: Check emulator booting status
         run: |
-          chmod a+x ./mainActivityCheck.sh
-          ./mainActivityCheck.sh
+          chmod a+x ./scripts/check_emu.sh
+          ./scripts/check_emu.sh
 
       - name: Install APK
         run: |
           adb shell dumpsys window 2>/dev/null | grep -i mCurrentFocus
           adb install ./apps/ApiDemos-debug.apk
-          chmod a+x ./mainActivityCheck.sh
-          ./mainActivityCheck.sh
+          chmod a+x ./scripts/mainActivityCheck.sh
+          ./scripts/mainActivityCheck.sh
 
       - name: Execute the test
-        continue-on-error: true
         run: |
           yarn androidtests
 
