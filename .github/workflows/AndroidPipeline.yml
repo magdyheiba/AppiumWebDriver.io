@@ -17,6 +17,7 @@ env:
   ANDROID_SDK_PACKAGES: system-images;android-30;google_apis;x86_64 platforms;android-30 build-tools;33.0.2 platform-tools emulator
   EMULATOR_TIMEOUT: 350
   EMULATOR_NAME: nexus
+  BOOT_TIMEOUT: 700
 
 jobs:
   webriverIo-emulator:
@@ -58,6 +59,17 @@ jobs:
       - name: Install dependencies
         run: |
           yarn generate
+      - name: Check emulator booting status
+        run: |
+          chmod a+x ./sscript/check_emu.sh
+          ./sscript/check_emu.sh
+
+      - name: Install APK
+        run: |
+          adb shell dumpsys window 2>/dev/null | grep -i mCurrentFocus
+          adb install ./apps/ApiDemos-debug.apk
+          chmod a+x ./mainActivityCheck.sh
+          ./mainActivityCheck.sh
 
       - name: Execute the test
         continue-on-error: true
