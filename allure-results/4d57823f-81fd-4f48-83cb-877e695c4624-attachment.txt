@@ -1,0 +1,7 @@
+{
+  "script": "return ((x, y) => window.scrollBy(x, y)).apply(null, arguments)",
+  "args": [
+    0,
+    200
+  ]
+}

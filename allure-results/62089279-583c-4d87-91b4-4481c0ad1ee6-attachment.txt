@@ -1,0 +1,14 @@
+{
+  "script": "mobile: scrollGesture",
+  "args": [
+    {
+      "element": "00000000-0000-0205-ffff-ffff0000002e",
+      "left": 100,
+      "top": 100,
+      "width": 400,
+      "height": 400,
+      "direction": "down",
+      "percent": 5
+    }
+  ]
+}

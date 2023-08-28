@@ -1,0 +1,11 @@
+{
+  "actions": [
+    {
+      "action": "moveTo",
+      "options": {
+        "x": 20,
+        "y": 30
+      }
+    }
+  ]
+}

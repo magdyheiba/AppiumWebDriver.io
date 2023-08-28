@@ -1,0 +1,10 @@
+{
+  "script": "mobile: scrollGesture",
+  "args": [
+    {
+      "element": "00000000-0000-01e7-ffff-ffff0000002e",
+      "direction": "down",
+      "percent": 5
+    }
+  ]
+}

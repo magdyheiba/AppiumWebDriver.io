@@ -24,14 +24,14 @@ export const config: Options.Testrunner = {
     // 'path/to/excluded/files'
   ],
   maxInstances: 10,
-  specFileRetries: 3,
+  // specFileRetries: 3,
   capabilities: [
     {
       "appium:platformName": "Android",
       "appium:deviceName": "Pixel 4A",
       "appium:app": join(process.cwd(), "/apps/ApiDemos-debug.apk"),
       // "appium:app": join(process.cwd(), "/apps/marketPlace.apk"),
-      "appium:platformVersion": "11.0",
+      "appium:platformVersion": "13.0",
       "appium:automationName": "UiAutomator2",
     },
   ],
