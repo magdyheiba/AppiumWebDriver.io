@@ -156,9 +156,6 @@ jobs:
         run: |
           npm i -g appium@next --unsafe-perm=true --allow-root
           appium driver install uiautomator2
-      - name: Install dependencies
-        run: |
-          yarn generate
 
       - name: Check emulator booting status
         run: |
@@ -172,14 +169,15 @@ jobs:
           chmod a+x ./scripts/mainActivityCheck.sh
           ./scripts/mainActivityCheck.sh
 
-      - name: Execute the test
+      - name: Run the tests
         run: |
           yarn androidtests
 
-      - name: Generate report
-        if: always()
-        run: |
-          npx allure generate reports/allure-results
+      # - name: Generate report
+      #   if: always()
+      #   run: |
+
+      #     npx allure generate reports/allure-results
 
       - name: Upload artifact
         if: always()
