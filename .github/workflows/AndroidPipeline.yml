@@ -179,7 +179,7 @@ jobs:
       - name: Generate report
         if: always()
         run: |
-          npx allure generate report/allure-results
+          npx allure generate reports/allure-results
 
       - name: Upload artifact
         if: always()
