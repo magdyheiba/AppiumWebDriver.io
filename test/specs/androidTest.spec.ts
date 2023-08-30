@@ -23,12 +23,14 @@ describe("My Login application", () => {
   });
   it("test#2 typing a text into a field an verify it", async () => {
     await appPage.performTyping();
+    await driver.pause(3000);
     await appPage.validateTheValueAppliedCorrectly();
   });
   it("test#3 clicking on a checkbox and verify whether we click on it or not", async () => {
     await accessibilityPage.clickOnAccessibilityButton();
     await accessibilityPage.clickOnAccessibilityNodeQueringButton();
     await accessibilityPage.clickOnCheckbox();
+    await driver.pause(3000);
     await accessibilityPage.validateCheckBoxIsChecked();
   });
   it("test#4 Scroll down to an element and validate the title", async () => {
@@ -49,6 +51,7 @@ describe("My Login application", () => {
     await viewsPage.scrollDownToText("Radio Group");
     await viewsPage.clickOnRadioGroupButton();
     await viewsPage.clickOnBreakfastRadioButton();
+    await driver.pause(2000);
     await viewsPage.validateRadioButtonIsChecked();
   });
   afterEach(async () => {

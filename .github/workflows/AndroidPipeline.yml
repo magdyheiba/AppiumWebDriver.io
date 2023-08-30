@@ -176,11 +176,10 @@ jobs:
         run: |
           yarn androidtests
 
-      # - name: Generate report
-      #   if: always()
-      #   run: |
-
-      #     npx allure generate reports/allure-results
+      - name: Generate report
+        if: always()
+        run: |
+          npx allure generate reports/allure-results
 
       - name: Upload artifact
         if: always()
