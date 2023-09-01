@@ -1,4 +1,4 @@
-name: Wdio-x-native
+name: Tests on Lambdatest
 
 on:
   pull_request:
@@ -129,60 +129,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Add avdmanager and sdkmanager to system PATH
-        run: |
-          echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/${{ env.ANDROID_BUILD_TOOLS_VERSION }}" >> $GITHUB_PATH
-
-      - name: Install Sdk
-        run: |
-          yes Y | sdkmanager --licenses
-          sdkmanager --install ${ANDROID_SDK_PACKAGES}
-
-      - name: Build emulator
-        run: |
-          echo "no" | avdmanager --verbose create avd --force -n $EMULATOR_NAME --abi "${ANDROID_TARGET}/${ANDROID_ARCH}" -k "system-images;android-${API_LEVEL};${ANDROID_TARGET};${ANDROID_ARCH}"
-
-      - name: Launch emulator
-        run: |
-          chmod +x ./scripts/start_emu.sh
-          ./scripts/start_emu.sh
-
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "yarn"
       - run: yarn
-      - name: Install appium
-        run: |
-          npm i -g appium@next --unsafe-perm=true --allow-root
-          appium driver install uiautomator2
-      - name: Install dependencies
-        run: |
-          yarn generate
-
-      - name: Check emulator booting status
-        run: |
-          chmod a+x ./scripts/check_emu.sh
-          ./scripts/check_emu.sh
-
-      - name: Install APK
-        run: |
-          adb shell dumpsys window 2>/dev/null | grep -i mCurrentFocus
-          adb install ./apps/ApiDemos-debug.apk
-          chmod a+x ./scripts/mainActivityCheck.sh
-          ./scripts/mainActivityCheck.sh
 
       - name: Run the tests
         run: |
           yarn androidtests
-
-      - name: Generate report
-        if: always()
-        run: |
-          npx allure generate reports/allure-results
-
-      - name: Upload artifact
-        if: always()
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: "./allure-report"

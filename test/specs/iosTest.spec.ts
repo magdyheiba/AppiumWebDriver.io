@@ -1,5 +1,5 @@
 // import loginPage from "../../pageobjects/login.page";
-import LoginPage from "../../pages/loginPage.ts";
+import LoginPage from "../pages/loginPage.ts";
 
 describe("My Login application", () => {
   let loginPage: LoginPage;
