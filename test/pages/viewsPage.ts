@@ -54,9 +54,9 @@ export default class ViewsPage {
    */
   async scrollDownToText(text: any) {
     const selector =
-      'new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text("' +
+      'new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textMatches("' +
       text +
-      '").className("android.widget.TextView"))';
+      '").instance(0))';
     await $(`android=${selector}`);
   }
 
