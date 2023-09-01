@@ -43,6 +43,7 @@ export default class ViewsPage {
    * @returns The code is returning the instance of the object that the method is being called on.
    */
   async clickOnViewsButton() {
+    await (await this.views_button).waitForDisplayed();
     (await this.views_button).click();
     return this;
   }
@@ -64,6 +65,7 @@ export default class ViewsPage {
    * @returns the instance of the object it is being called on (this).
    */
   async clickOnRadioGroupButton() {
+    await (await this.radioGroup_button).waitForDisplayed();
     (await this.radioGroup_button).click();
     return this;
   }
@@ -72,6 +74,7 @@ export default class ViewsPage {
    * @returns The code is returning the current instance of the object.
    */
   async clickOnBreakfastRadioButton() {
+    await (await this.breakfast_checkbox).waitForDisplayed();
     (await this.breakfast_checkbox).click();
     return this;
   }
@@ -83,6 +86,7 @@ export default class ViewsPage {
    * element.
    */
   async getRadioButtoneAttribute() {
+    await (await this.breakfast_checkbox).waitForDisplayed();
     return (await this.breakfast_checkbox).getAttribute("checked");
   }
 

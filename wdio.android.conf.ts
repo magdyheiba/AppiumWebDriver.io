@@ -7,12 +7,6 @@ exports.config = {
       transpileOnly: true,
     },
   },
-  services: [
-    RerunService,
-    {
-      // ...
-    },
-  ],
   user: process.env.LT_USERNAME || "magdyheiba14",
   key:
     process.env.LT_ACCESS_KEY ||

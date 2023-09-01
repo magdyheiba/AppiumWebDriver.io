@@ -36,6 +36,7 @@ export default class GraphicsPage {
    * @returns the instance of the object that the method is being called on.
    */
   async clickOnGraphicsButton() {
+    await (await this.graphics_button).waitForDisplayed();
     (await this.graphics_button).click();
     return this;
   }
@@ -56,6 +57,7 @@ export default class GraphicsPage {
    * @returns the instance of the object on which the function is called.
    */
   async clickOnVerticsButton() {
+    await (await this.vertics_button).waitForDisplayed();
     (await this.vertics_button).click();
     return this;
   }
@@ -65,6 +67,7 @@ export default class GraphicsPage {
    * @returns The page title of the Vertics page.
    */
   async getVerticsPageTitle() {
+    await (await this.verticsAndGraphics).waitForDisplayed();
     return (await this.verticsAndGraphics).getText();
   }
   /**

@@ -60,18 +60,21 @@ export default class AppPage {
    * The function clicks on the app button asynchronously.
    */
   async clickOnAppButton() {
+    await (await this.app_Button).waitForDisplayed();
     (await this.app_Button).click();
   }
   /**
    * The function clicks on the activity button asynchronously.
    */
   async clickOnActivityButton() {
+    await (await this.activity_Button).waitForDisplayed();
     (await this.activity_Button).click();
   }
   /**
    * The function clicks on a custom title button asynchronously.
    */
   async clickOnCustomTitleButton() {
+    await (await this.customTitle_Button).waitForDisplayed();
     (await this.customTitle_Button).click();
   }
   /**
@@ -79,6 +82,7 @@ export default class AppPage {
    * @param {any} string - The parameter "string" is the text that you want to type into the field.
    */
   async typeIntoField(string: any) {
+    await (await this.left_text).waitForDisplayed();
     (await this.left_text).clearValue();
     (await this.left_text).addValue(string);
   }
@@ -86,12 +90,14 @@ export default class AppPage {
    * The function asynchronously clicks on the "changeLeft_button" element.
    */
   async clickOnchangeLeftButton() {
+    await (await this.changeLeft_button).waitForDisplayed();
     (await this.changeLeft_button).click();
   }
   /**
    * The function validates if the text applied correctly matches the expected text.
    */
   async validateTheValueAppliedCorrectly() {
+    await (await this.leftIsBest_text).waitForDisplayed();
     await expect(await this.leftIsBest_text.getText()).toBe(
       testData.textToBeSent
     );

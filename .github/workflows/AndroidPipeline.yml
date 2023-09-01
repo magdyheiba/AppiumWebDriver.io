@@ -128,13 +128,11 @@ jobs:
         emulator_name: [$EMULATOR_NAME]
     steps:
       - uses: actions/checkout@v3
-
+      - uses: mskelton/setup-yarn@v1
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "yarn"
       - run: yarn
-
       - name: Run the tests
         run: |
           yarn androidtests

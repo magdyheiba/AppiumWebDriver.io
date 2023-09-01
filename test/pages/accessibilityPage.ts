@@ -42,6 +42,7 @@ export default class AccessibilityPage {
    * The function clickOnAccessibilityButton() clicks on the AccessibilityButton element.
    */
   async clickOnAccessibilityButton() {
+    this.AccessibilityButton.waitForDisplayed({ timeout: 3000 });
     this.AccessibilityButton.click();
     return this;
   }
@@ -49,12 +50,14 @@ export default class AccessibilityPage {
    * The function clicks on the AccessibilityNodeQueringButton.
    */
   async clickOnAccessibilityNodeQueringButton() {
+    this.AccessibilityNodeQueringButton.waitForDisplayed({ timeout: 3000 });
     this.AccessibilityNodeQueringButton.click();
   }
   /**
    * The function asynchronously clicks on a checkbox button.
    */
   async clickOnCheckbox() {
+    (await this.checkBoxButton).waitForDisplayed();
     (await this.checkBoxButton).click();
   }
   /**
@@ -62,14 +65,20 @@ export default class AccessibilityPage {
    * @returns The text of the AccessibilityNodeProviderButton.
    */
   async getAccessibilityNodeProviderText() {
-    return this.AccessibilityNodeProviderButton.getText();
+    (await this.AccessibilityNodeProviderButton).waitForDisplayed();
+    return await this.AccessibilityNodeProviderButton.getText();
   }
   /**
    * The function validates that a checkbox button is checked.
    */
   async validateCheckBoxIsChecked() {
+    await (await this.checkBoxButton).waitForDisplayed();
     expect(await this.checkBoxButton.getAttribute("checked")).toBe("true");
   }
+  /**
+   * The function validates that the text returned by the accessibility node provider is "Accessibility
+   * Node Provider".
+   */
   async validateAccessibilityNodeProviderText() {
     await expect(await this.getAccessibilityNodeProviderText()).toBe(
       "Accessibility Node Provider"
