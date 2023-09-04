@@ -7,11 +7,8 @@ exports.config = {
       transpileOnly: true,
     },
   },
-  user: process.env.LT_USERNAME || "magdyheiba14",
-  key:
-    process.env.LT_ACCESS_KEY ||
-    "oYWMlmkM7au8Da8UA0OerpFxFW1bis9yooaLoHDVenMepB7APZ",
-
+  user: process.env.LT_USERNAME,
+  key: process.env.LT_ACCESS_KEY,
   updateJob: false,
   specs: ["./test/specs/androidTest.spec.ts"], //path of your test script
   exclude: [],
