@@ -59,6 +59,12 @@ jobs:
           ls -l 
           chmod a+x scripts/start_simu.sh
           scripts/start_simu.sh
+      - name: Install appium
+        run: |
+          yarn add appium
+          appium driver install xcuitest
+      - name: Run Appium Server
+        run: appium --log-timestamp --log appiumServer.log &
       - name: Run the tests
         run: |
           yarn iostestslocal
