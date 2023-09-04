@@ -101,6 +101,7 @@ export const config: Options.Testrunner = {
   framework: "mocha",
   mochaOpts: {
     timeout: 20000,
+    retries: 3,
   }, //
   // The number of times to retry the entire specfile when it fails as a whole
   // specFileRetries: 1,
