@@ -55,8 +55,10 @@ jobs:
 
       - name: Start simulator
         run: |
-          chmod a+x ../../scripts/start_simu.sh
-          ../../scripts/start_simu.sh
+          pwd
+          ls -l 
+          chmod a+x ../scripts/start_simu.sh
+          ../scripts/start_simu.sh
       - name: Check simulator booting status
         run: |
           chmod a+x ../../scripts/check_simu.sh
