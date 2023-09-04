@@ -19,19 +19,16 @@ jobs:
         with:
           node-version: 18
       - run: yarn
-      # - name: Run the tests
-      #   run: |
-      #     yarn androidtests
+      - name: Run the tests
+        run: |
+          yarn androidtests
       - name: generate allure report
         run: |
           brew install allure
-          echo 'test............'
-          pwd
-          ls -l
-          # allure generate allure-results
-      # - name: Upload Allure Summary Report as Pipeline Artifact
-      #   if: always()
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Allure Report
-      #     path: "allure-report/index.html"
+          allure generate allure-results
+      - name: Upload Allure Summary Report as Pipeline Artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Allure Report
+          path: "allure-report/index.html"
