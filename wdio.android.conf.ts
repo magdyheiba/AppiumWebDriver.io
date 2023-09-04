@@ -9,6 +9,7 @@ exports.config = {
   },
   user: process.env.LT_USERNAME,
   key: process.env.LT_ACCESS_KEY,
+
   updateJob: false,
   specs: ["./test/specs/androidTest.spec.ts"], //path of your test script
   exclude: [],

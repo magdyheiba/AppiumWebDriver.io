@@ -8,6 +8,9 @@ permissions:
   contents: write
   pages: write
   id-token: write
+env:
+  LT_USERNAME: ${{ secrets.LT_USERNAME }}
+  LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
 
 jobs:
   Android:
