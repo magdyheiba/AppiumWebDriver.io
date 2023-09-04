@@ -1,0 +1,145 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1693832240354' stop='1693832287158'>
+    <name>My Login application</name>
+    <title>My Login application</title>
+    <test-cases>
+        <test-case start='1693832240354' status='passed' stop='1693832243579'>
+            <name>test#1 android app using POM design pattern #1 clicking on element</name>
+            <title>test#1 android app using POM design pattern #1 clicking on element</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='story' value='clicking'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1693832243579' status='passed' stop='1693832251510'>
+            <name>test#2 typing a text into a field an verify it</name>
+            <title>test#2 typing a text into a field an verify it</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='story' value='typing'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1693832251510' status='passed' stop='1693832257172'>
+            <name>test#3 clicking on a checkbox and verify whether we click on it or not</name>
+            <title>test#3 clicking on a checkbox and verify whether we click on it or not</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='story' value='clicking on a checkbox'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1693832257172' status='passed' stop='1693832266899'>
+            <name>test#4 Scroll down to an element and validate the title</name>
+            <title>test#4 Scroll down to an element and validate the title</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='story' value='perform a scrolling'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1693832266899' status='passed' stop='1693832278823'>
+            <name>test#5 Swipe left to an element and swipe right</name>
+            <title>test#5 Swipe left to an element and swipe right</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='story' value='perform a swiping'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1693832278823' status='passed' stop='1693832287158'>
+            <name>test#6 test RadioButton functionalities and validate clicking on it</name>
+            <title>test#6 test RadioButton functionalities and validate clicking on it</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='story' value='clicking on a radio button'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+                <parameter kind='argument' name='device' value='Pixel 4A 13.0-13'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

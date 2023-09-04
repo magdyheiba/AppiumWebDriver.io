@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "module": "ESNext",
+    "module": "CommonJS",
+    "target": "es2022",
     "types": [
       "node",
       "@wdio/globals/types",
       "expect-webdriverio",
-      "@wdio/jasmine-framework"
+      "@wdio/mocha-framework",
+      "@wdio/appium-service"
     ],
-    "target": "es2022",
+    "skipLibCheck": true,
+    "noEmit": true,
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   }
 }

@@ -1,4 +1,4 @@
-import MarketPlace from "../../pages/marketplacePage.ts";
+import MarketPlace from "../pages/marketplacePage.ts";
 
 describe("My Login application", () => {
   it("test android app using POM design pattern", async () => {
