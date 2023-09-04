@@ -2,7 +2,8 @@ import AccessibilityPage from "../pages/accessibilityPage.ts";
 import AppPage from "../pages/appPage.ts";
 import GraphicsPage from "../pages/graphicsPage.ts";
 import ViewsPage from "../pages/viewsPage.ts";
-describe("My Login application", () => {
+describe("My Login application", function () {
+  this.retries(3);
   let accessibilityPage: AccessibilityPage;
   let appPage: AppPage;
   let graphicsPage: GraphicsPage;

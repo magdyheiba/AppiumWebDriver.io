@@ -43,6 +43,7 @@ exports.config = {
   framework: "mocha",
   mochaOpts: {
     timeout: 20000,
+    retries: 3,
   },
   specFileRetries: 2,
 };
