@@ -60,9 +60,9 @@ export const config: Options.Testrunner = {
   capabilities: [
     {
       "appium:platformName": "ios",
-      "appium:deviceName": "iPhone 8",
+      "appium:deviceName": "iPhone 14 Pro",
       "appium:app": join(process.cwd(), "/apps/SauceLabs.app"),
-      "appium:platformVersion": "16.2",
+      "appium:platformVersion": "16.4",
       "appium:automationName": "XCUITest",
       "appium:newCommandTimeout": 3600,
       "appium:waitForIdleTimeout": 5000,

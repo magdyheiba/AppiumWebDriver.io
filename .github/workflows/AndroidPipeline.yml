@@ -11,8 +11,8 @@ permissions:
 env:
   LT_USERNAME: ${{ secrets.LT_USERNAME }}
   LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
-  IPHONE_MODEL: "iphone 8"
-  IOS_VERSION: 16.2
+  IPHONE_MODEL: "iPhone 14 Pro"
+  IOS_VERSION: 16.4
 
 jobs:
   # Android:
