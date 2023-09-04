@@ -1,9 +1,0 @@
-{
-  "script": "mobile: scroll",
-  "args": [
-    {
-      "strategy": "unified",
-      "selector": "~Vertices"
-    }
-  ]
-}

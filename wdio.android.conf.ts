@@ -46,4 +46,14 @@ exports.config = {
     retries: 3,
   },
   specFileRetries: 2,
+  reporters: [
+    [
+      "allure",
+      {
+        outputDir: "./allure-results",
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+      },
+    ],
+  ],
 };

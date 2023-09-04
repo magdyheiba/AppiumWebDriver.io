@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": "#io.appium.android.apis:id/breakfast"
-}

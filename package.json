@@ -16,7 +16,8 @@
     "expect-webdriverio": "^4.1.2",
     "wdio-lambdatest-service": "^2.0.0",
     "wdio-wait-for": "^3.0.2",
-    "wdio-rerun-service": "^1.6.2"
+    "wdio-rerun-service": "^1.6.2",
+    "@wdio/allure-reporter": "^7.0.0"
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.ts",

@@ -1,5 +1,0 @@
-{
-  "error": "no such element",
-  "message": "An element could not be located on the page using the given search parameters.",
-  "stacktrace": "NoSuchElementError: An element could not be located on the page using the given search parameters.\n    at XCUITestDriver.doNativeFind (/Users/magdy/.appium/node_modules/appium-xcuitest-driver/lib/commands/find.js:137:13)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async XCUITestDriver.findNativeElementOrElements (/Users/magdy/.appium/node_modules/appium-xcuitest-driver/lib/commands/find.js:95:12)\n    at async XCUITestDriver.findElOrEls (/Users/magdy/.appium/node_modules/appium-xcuitest-driver/lib/commands/find.js:24:14)\n    at async XCUITestDriver.findElOrElsWithProcessing (/usr/local/lib/node_modules/appium/node_modules/@appium/base-driver/lib/basedriver/commands/find.ts:65:14)\n    at async XCUITestDriver.findElement (/usr/local/lib/node_modules/appium/node_modules/@appium/base-driver/lib/basedriver/commands/find.ts:12:12)"
-}
