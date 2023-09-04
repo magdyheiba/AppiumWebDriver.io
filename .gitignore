@@ -1,5 +1,5 @@
 node_modules
-# /allure-results/
+/allure-results/
 /allure-report/
 .DS_Store
 /apps/SauceLabs.app 

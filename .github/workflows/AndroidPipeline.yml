@@ -26,9 +26,10 @@ jobs:
         run: |
           brew install allure
           allure generate allure-results
-      - name: Upload Allure Summary Report as Pipeline Artifact
+          zip -r allure-report.zip allure-report
+      - name: Upload Allure Report as Pipeline Artifact
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: Allure Report
-          path: "allure-report/index.html"
+          path: "allure-report.zip"
