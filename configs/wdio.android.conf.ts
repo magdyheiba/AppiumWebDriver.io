@@ -3,7 +3,7 @@ exports.config = {
   autoCompileOpts: {
     autoCompile: true,
     tsNodeOpts: {
-      project: "./package.json",
+      project: "../package.json",
       transpileOnly: true,
     },
   },
@@ -11,7 +11,7 @@ exports.config = {
   key: process.env.LT_ACCESS_KEY,
 
   updateJob: false,
-  specs: ["./test/specs/androidTest.spec.ts"], //path of your test script
+  specs: ["../test/specs/androidTest.spec.ts"], //path of your test script
   exclude: [],
 
   capabilities: [

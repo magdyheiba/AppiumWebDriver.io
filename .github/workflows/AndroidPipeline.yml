@@ -11,9 +11,33 @@ permissions:
 env:
   LT_USERNAME: ${{ secrets.LT_USERNAME }}
   LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
+  IPHONE_MODEL: "iphone 8"
+  IOS_VERSION: 16.2
 
 jobs:
-  Android:
+  # Android:
+  #   runs-on: macos-13
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: mskelton/setup-yarn@v1
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+  #     - name: Run the tests
+  #       run: |
+  #         yarn androidtests
+  #     - name: generate allure report
+  #       run: |
+  #         brew install allure
+  #         allure generate allure-results
+  #         zip -r allure-report.zip allure-report
+  #     - name: Upload Allure Report as Pipeline Artifact
+  #       if: always()
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: Allure Report
+  #         path: "allure-report.zip"
+  ios:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
@@ -21,10 +45,25 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: yarn
+      - name: Export environment variables
+        run: |
+          export IPHONE_MODEL=$IPHONE_MODEL
+          export IOS_VERSION=$IOS_VERSION
+
+      - name: check simulator list
+        run: xcrun simctl list
+
+      - name: Start simulator
+        run: |
+          chmod a+x ./scripts/start_simu.sh
+          ./scripts/start_simu.sh
+      - name: Check simulator booting status
+        run: |
+          chmod a+x ./scripts/check_simu.sh
+          ./sscript/check_simu.sh
       - name: Run the tests
         run: |
-          yarn androidtests
+          yarn iostestslocal
       - name: generate allure report
         run: |
           brew install allure

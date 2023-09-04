@@ -1,38 +1,6 @@
 import type { Options } from "@wdio/types";
 import { join } from "path";
 
-exports.config = {
-  // ...
-  user: process.env.LT_USERNAME,
-  key: process.env.LT_ACCESS_KEY,
-  logFile: "./logDir/api.log",
-  services: [
-    [
-      "lambdatest",
-      {
-        tunnel: true,
-      },
-    ],
-  ],
-  // ...
-};
-services: [
-  [
-    "lambdatest",
-    {
-      tunnel: false,
-      app_upload: true,
-      app: {
-        app_name: "xyz", //provide your desired app name
-        app_path: join(process.cwd(), "/apps/ApiDemos-debug.apk"), //provide the local app location
-        // or
-        // app_url: "https://example.test_android.apk", //provide the url where your app is horsted or stored
-        custom_id: "12345", //provide your desired custom id
-        enableCapability: true,
-      },
-    },
-  ],
-];
 export const config: Options.Testrunner = {
   //
   // ====================
@@ -43,12 +11,12 @@ export const config: Options.Testrunner = {
   autoCompileOpts: {
     autoCompile: true,
     tsNodeOpts: {
-      project: "./tsconfig.json",
+      project: "../package.json",
       transpileOnly: true,
     },
   },
   port: 4723,
-  specs: ["./test/specs/androidTest.spec.ts"],
+  specs: ["../test/specs/androidTest.spec.ts"],
   // specs: ["./test/specs/marketPlaceDemo.spec.ts"],
 
   // Patterns to exclude.
@@ -61,10 +29,11 @@ export const config: Options.Testrunner = {
     {
       "appium:platformName": "Android",
       "appium:deviceName": "Pixel 4A",
-      "appium:app": join(process.cwd(), "/apps/ApiDemos-debug.apk"),
+      "appium:app": join(process.cwd(), "./apps/ApiDemos-debug.apk"),
       // "appium:app": join(process.cwd(), "/apps/marketPlace.apk"),
-      "appium:platformVersion": "11.0",
+      "appium:platformVersion": "13.0",
       "appium:automationName": "UiAutomator2",
+      "appium:fullReset": true,
     },
   ],
   //
@@ -129,8 +98,11 @@ export const config: Options.Testrunner = {
   //
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
-  framework: "jasmine",
-  //
+  framework: "mocha",
+  mochaOpts: {
+    timeout: 20000,
+    retries: 3,
+  }, //
   // The number of times to retry the entire specfile when it fails as a whole
   // specFileRetries: 1,
   //
@@ -143,21 +115,31 @@ export const config: Options.Testrunner = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec", ["allure", { outputDir: "allure-results" }]],
+  reporters: [
+    "spec",
+    [
+      "allure",
+      {
+        outputDir: "../allure-results",
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+      },
+    ],
+  ],
 
   //
   // Options to be passed to Jasmine.
-  // jasmineOpts: {
-  //   // Jasmine default timeout
-  //   defaultTimeoutInterval: 60000,
-  //   //
-  //   // The Jasmine framework allows interception of each assertion in order to log the state of the application
-  //   // or website depending on the result. For example, it is pretty handy to take a screenshot every time
-  //   // an assertion fails.
-  //   expectationResultHandler: function (passed, assertion) {
-  //     // do something
+  //   jasmineOpts: {
+  //     // Jasmine default timeout
+  //     defaultTimeoutInterval: 60000,
+  //     //
+  //     // The Jasmine framework allows interception of each assertion in order to log the state of the application
+  //     // or website depending on the result. For example, it is pretty handy to take a screenshot every time
+  //     // an assertion fails.
+  //     expectationResultHandler: function (passed, assertion) {
+  //       // do something
+  //     },
   //   },
-  // },
 
   //
   // =====

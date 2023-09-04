@@ -20,10 +20,11 @@
     "@wdio/allure-reporter": "^7.0.0"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.ts",
-    "androidtests": "wdio run ./wdio.android.conf.ts",
-    "iostests": "wdio run ./wdio.ios.conf.ts",
-    "androidtestslocal": "wdio run ./wdio.androidLocal.conf.ts"
+    "wdio": "wdio run ./config/wdio.conf.ts",
+    "androidtests": "wdio run ./configs/wdio.android.conf.ts",
+    "iostests": "wdio run ./configs/wdio.ios.conf.ts",
+    "androidtestslocal": "wdio run ./configs/wdio.androidLocal.conf.ts",
+    "iostestslocal": "wdio run ./configs/wdio.iosSimulator.conf.ts"
   },
   "engines": {
     "npm": ">=7.0.0",

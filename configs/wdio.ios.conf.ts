@@ -1,9 +1,9 @@
 import { join } from "path";
 exports.config = {
-  user: process.env.LT_USERNAME || "magdyheiba14",
-  key:
-    process.env.LT_ACCESS_KEY ||
-    "oYWMlmkM7au8Da8UA0OerpFxFW1bis9yooaLoHDVenMepB7APZ",
+  // user: process.env.LT_USERNAME || "magdyheiba14",
+  // key:
+  //   process.env.LT_ACCESS_KEY ||
+  //   "oYWMlmkM7au8Da8UA0OerpFxFW1bis9yooaLoHDVenMepB7APZ",
 
   updateJob: false,
   specs: ["../test/specs/iosTest.spec.ts"], //path of your test script
@@ -14,8 +14,8 @@ exports.config = {
       build: "NodeJS WebDriverIO iOS",
       name: "Sample Test - WebDriverIO",
       isRealMobile: true,
-      deviceName: "iPhone 14",
-      platformVersion: "16",
+      deviceName: "iPhone 8",
+      platformVersion: "16.2",
       platformName: "iOS",
       app: {
         app_name: "Demo App", //provide your desired app name
@@ -38,10 +38,9 @@ exports.config = {
   path: "/wd/hub",
   hostname: "mobile-hub.lambdatest.com",
   port: 80,
-
   framework: "mocha",
   mochaOpts: {
-    ui: "bdd",
     timeout: 20000,
+    retries: 3,
   },
 };
