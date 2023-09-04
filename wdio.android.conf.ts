@@ -21,10 +21,13 @@ exports.config = {
       build: "NodeJS WebDriverIO iOS",
       name: "Sample Test - WebDriverIO",
       isRealMobile: true,
-      deviceName: "Xiaomi 12 Pro",
-      platformVersion: "12",
+      deviceName: "Galaxy S23",
+      platformVersion: "13",
       platformName: "android",
       app: "lt://APP1016038711693131588120310",
+      idleTimeout: 120,
+      queueTimeout: 500,
+      noReset: false,
     },
   ],
   logLevel: "info",
@@ -42,10 +45,4 @@ exports.config = {
     timeout: 20000,
   },
   specFileRetries: 2,
-
-  // "engines": {
-  //   "npm": ">=7.0.0",
-  //   "node": ">=16.16.0"
-  // },
-  // "packageManager": "yarn@1.22.19"
 };

@@ -23,5 +23,10 @@
     "androidtests": "wdio run ./wdio.android.conf.ts",
     "iostests": "wdio run ./wdio.ios.conf.ts",
     "androidtestslocal": "wdio run ./wdio.androidLocal.conf.ts"
-  }
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.16.0"
+  },
+  "packageManager": "yarn@1.22.19"
 }
