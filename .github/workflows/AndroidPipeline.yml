@@ -59,10 +59,6 @@ jobs:
           ls -l 
           chmod a+x scripts/start_simu.sh
           scripts/start_simu.sh
-      - name: Check simulator booting status
-        run: |
-          chmod a+x scripts/check_simu.sh
-          scripts/check_simu.sh
       - name: Run the tests
         run: |
           yarn iostestslocal
