@@ -9,20 +9,6 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  IPHONE_MODEL: ${{ inputs.IOS_simulator }}
-  IOS_VERSION: 16.2
-  API_LEVEL: 30
-  EMULATOR_NAME: Nexus
-  EMULATOR_DEVICE: ${{ inputs.android_emulator }}
-  EMULATOR_VERSION: 12
-  ANDROID_ARCH: x86_64
-  ANDROID_TARGET: google_apis
-  ANDROID_BUILD_TOOLS_VERSION: 33.0.2
-  ANDROID_SDK_PACKAGES: system-images;android-30;google_apis;x86_64 platforms;android-30 build-tools;33.0.2 platform-tools emulator
-  EMULATOR_TIMEOUT: 350
-  BOOT_TIMEOUT: 700
-
 jobs:
   Android:
     runs-on: macos-13
@@ -43,6 +29,8 @@ jobs:
       - name: Generate report
         if: always()
         run: |
+          rm -rf .git/hooks
+          npm install
           npx allure generate report/allure-results
 
       - name: Setup Pages
