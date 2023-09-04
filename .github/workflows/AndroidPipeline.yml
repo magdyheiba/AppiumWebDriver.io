@@ -25,10 +25,13 @@ jobs:
       - name: generate allure report
         run: |
           brew install allure
-          allure generate allure-results
-      - name: Upload Allure Summary Report as Pipeline Artifact
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: Allure Report
-          path: "allure-report/index.html"
+          echo 'test............'
+          pwd
+          ls -l
+          # allure generate allure-results
+      # - name: Upload Allure Summary Report as Pipeline Artifact
+      #   if: always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: Allure Report
+      #     path: "allure-report/index.html"
