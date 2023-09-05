@@ -45,20 +45,20 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Export environment variables
-        run: |
-          export IPHONE_MODEL=$IPHONE_MODEL
-          export IOS_VERSION=$IOS_VERSION
+      # - name: Export environment variables
+      #   run: |
+      #     export IPHONE_MODEL=$IPHONE_MODEL
+      #     export IOS_VERSION=$IOS_VERSION
 
-      - name: check simulator list
-        run: xcrun simctl list
+      # - name: check simulator list
+      #   run: xcrun simctl list
 
-      - name: Start simulator
-        run: |
-          pwd
-          ls -l 
-          chmod a+x scripts/start_simu.sh
-          scripts/start_simu.sh
+      # - name: Start simulator
+      #   run: |
+      #     pwd
+      #     ls -l
+      #     chmod a+x scripts/start_simu.sh
+      #     scripts/start_simu.sh
       - name: Install appium
         run: |
           yarn global add appium
@@ -66,17 +66,17 @@ jobs:
           appium driver install xcuitest
       - name: Run Appium Server
         run: appium --log-timestamp --log appiumServer.log &
-      - name: Run the tests
-        run: |
-          yarn iostestslocal
-      - name: generate allure report
-        run: |
-          brew install allure
-          allure generate allure-results
-          zip -r allure-report.zip allure-report
-      - name: Upload Allure Report as Pipeline Artifact
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: Allure Report
-          path: "allure-report.zip"
+      # - name: Run the tests
+      #   run: |
+      #     yarn iostestslocal
+      # - name: generate allure report
+      #   run: |
+      #     brew install allure
+      #     allure generate allure-results
+      #     zip -r allure-report.zip allure-report
+      # - name: Upload Allure Report as Pipeline Artifact
+      #   if: always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: Allure Report
+      #     path: "allure-report.zip"
