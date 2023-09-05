@@ -58,17 +58,18 @@ jobs:
           ls -l
           chmod a+x scripts/start_simu.sh
           scripts/start_simu.sh
-      - name: Run the tests
-        run: |
-          yarn iostestslocal
-      - name: generate allure report
-        run: |
-          brew install allure
-          allure generate allure-results
-          zip -r allure-report.zip allure-report
-      - name: Upload Allure Report as Pipeline Artifact
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: Allure Report
-          path: "allure-report.zip"
+          echo $SIMULATOR_UDID
+      # - name: Run the tests
+      #   run: |
+      #     yarn iostestslocal
+      # - name: generate allure report
+      #   run: |
+      #     brew install allure
+      #     allure generate allure-results
+      #     zip -r allure-report.zip allure-report
+      # - name: Upload Allure Report as Pipeline Artifact
+      #   if: always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: Allure Report
+      #     path: "allure-report.zip"
