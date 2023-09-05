@@ -61,7 +61,7 @@ export const config: Options.Testrunner = {
     {
       "appium:platformName": "ios",
       "appium:deviceName": "iPhone 14 Pro",
-      "appium:app": join(process.cwd(), "/apps/SauceLabs.app"),
+      "appium:app": "/Users/runner/work/AppiumWebDriver.io/apps/SauceLabs.app",
       "appium:platformVersion": "16.4",
       "appium:udid": process.env.simulator_udid,
       "appium:automationName": "XCUITest",

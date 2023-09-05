@@ -13,7 +13,6 @@ env:
   LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
   IPHONE_MODEL: "iPhone 14 Pro"
   IOS_VERSION: 16.4
-  UDID:
 
 jobs:
   # Android:
@@ -59,6 +58,7 @@ jobs:
           scripts/start_simu.sh
       - name: Run the tests
         run: |
+          pwd
           yarn iostestslocal
       - name: generate allure report
         run: |
