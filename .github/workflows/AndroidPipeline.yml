@@ -61,9 +61,8 @@ jobs:
           scripts/start_simu.sh
       - name: Install appium
         run: |
-          yarn add appium
-          ln -fs /Users/runner/work/AppiumWebDriver.io/AppiumWebDriver.io/.npm-global/lib/node_modules/appium/build/lib/main.js /usr/local/bin/appium
-          chmod +x /usr/local/bin/appium
+          yarn global add appium
+          appium --version
           appium driver install xcuitest
       - name: Run Appium Server
         run: appium --log-timestamp --log appiumServer.log &
