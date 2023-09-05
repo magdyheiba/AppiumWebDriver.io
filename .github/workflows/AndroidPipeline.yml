@@ -61,7 +61,7 @@ jobs:
           scripts/start_simu.sh
       - name: Install appium
         run: |
-          yarn add appium
+          npm install -g appium@next
           appium driver install xcuitest
       - name: Run Appium Server
         run: appium --log-timestamp --log appiumServer.log &
