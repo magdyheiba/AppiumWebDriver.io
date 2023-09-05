@@ -41,7 +41,7 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
-      - uses: mskelton/setup-yarn@v1
+      # - uses: mskelton/setup-yarn@v1
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -61,8 +61,8 @@ jobs:
       #     scripts/start_simu.sh
       - name: Install appium
         run: |
-          npm uninstall -g appium && npm install -g appium@next --force
-          rm -rf ~/.appium
+          yarn global add appium --legacy-peer-deps
+          appium --version
           appium driver install xcuitest
       - name: Run Appium Server
         run: appium --log-timestamp --log appiumServer.log &
