@@ -58,7 +58,6 @@ jobs:
           scripts/start_simu.sh
       - name: Run the tests
         run: |
-          pwd
           yarn iostestslocal
       - name: generate allure report
         run: |
