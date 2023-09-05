@@ -9,6 +9,7 @@ simulator_udid=$(xcrun simctl create "$IPHONE_MODEL" "com.apple.CoreSimulator.Si
 # Export the simulator UDID as environment variable
 export SIMULATOR_UDID="$simulator_udid"
 echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> $GITHUB_ENV
+echo $simulator_udid
 
 # Boot the simulator
 xcrun simctl boot "$simulator_udid"
