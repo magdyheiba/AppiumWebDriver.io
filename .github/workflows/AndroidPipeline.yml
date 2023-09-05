@@ -63,9 +63,10 @@ jobs:
           simulator_name="${iphone_model}"
           simulator_udid=$(xcrun simctl create "$IPHONE_MODEL" "com.apple.CoreSimulator.SimDeviceType.$iphone_model" "com.apple.CoreSimulator.SimRuntime.iOS-$ios_version")
           echo $simulator_udid
-      # - name: Run the tests
-      #   run: |
-      #     yarn iostestslocal
+          echo process.env.simulator_udid
+      - name: Run the tests
+        run: |
+          yarn iostestslocal
       # - name: generate allure report
       #   run: |
       #     brew install allure
