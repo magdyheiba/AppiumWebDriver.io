@@ -55,7 +55,13 @@ jobs:
 
       - name: Start simulator
         run: |
-          simulator_udid=$(xcrun simctl create "$IPHONE_MODEL" "com.apple.CoreSimulator.SimDeviceType.$IPHONE_MODEL" "com.apple.CoreSimulator.SimRuntime.iOS-$IOS_VERSION")
+
+          chmod a+x scripts/start_simu.sh
+          scripts/start_simu.sh
+          iphone_model="${IPHONE_MODEL// /-}"
+          ios_version="${IOS_VERSION//./-}"
+          simulator_name="${iphone_model}"
+          simulator_udid=$(xcrun simctl create "$IPHONE_MODEL" "com.apple.CoreSimulator.SimDeviceType.$iphone_model" "com.apple.CoreSimulator.SimRuntime.iOS-$ios_version")
           echo $simulator_udid
       # - name: Run the tests
       #   run: |
