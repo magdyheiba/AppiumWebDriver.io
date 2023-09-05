@@ -55,22 +55,14 @@ jobs:
 
       - name: Start simulator
         run: |
-
           chmod a+x scripts/start_simu.sh
           scripts/start_simu.sh
-          # iphone_model="${IPHONE_MODEL// /-}"
-          # ios_version="${IOS_VERSION//./-}"
-          # simulator_name="${iphone_model}"
-          # simulator_udid=$(xcrun simctl create "$IPHONE_MODEL" "com.apple.CoreSimulator.SimDeviceType.$iphone_model" "com.apple.CoreSimulator.SimRuntime.iOS-$ios_version")
-          # UDID=$(xcrun simctl list | grep -m 1 -Eo '([0-9A-F]{8}-([0-9A-F]{4}-){3}[0-9A-F]{12})') >> $GITHUB_ENV
-          # echo $UDID
-          # echo $process.env.simulator_udid
           UDID=$(xcrun simctl list | egrep '(Booted)' | awk -F '[()]' '/Booted/{print $2; exit}')
+          echo "UDID=$UDID" >> $GITHUB_ENV
           echo $UDID
-
-      # - name: Run the tests
-      #   run: |
-      #     yarn iostestslocal
+      - name: Run the tests
+        run: |
+          yarn iostestslocal
       # - name: generate allure report
       #   run: |
       #     brew install allure
