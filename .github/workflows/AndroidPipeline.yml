@@ -61,7 +61,6 @@ jobs:
       #     scripts/start_simu.sh
       - name: Install appium
         run: |
-          yarn global add appium
           appium --version
           appium driver install xcuitest
       - name: Run Appium Server
