@@ -56,6 +56,9 @@ jobs:
         run: |
           chmod a+x scripts/start_simu.sh
           scripts/start_simu.sh
+          open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
+          echo '--- installing app'
+          xcrun simctl install booted /Users/runner/work/AppiumWebDriver.io/AppiumWebDriver.io/apps/SauceLabs.app
       - name: Run the tests
         run: |
           yarn iostestslocal
