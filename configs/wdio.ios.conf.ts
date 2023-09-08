@@ -1,33 +1,21 @@
-import { join } from "path";
 exports.config = {
-  // user: process.env.LT_USERNAME || "magdyheiba14",
-  // key:
-  //   process.env.LT_ACCESS_KEY ||
-  //   "oYWMlmkM7au8Da8UA0OerpFxFW1bis9yooaLoHDVenMepB7APZ",
-
+  user: process.env.LT_USERNAME,
+  key: process.env.LT_ACCESS_KEY,
   updateJob: false,
-  specs: ["../test/specs/iosTest.spec.ts"], //path of your test script
+  specs: ["../test/specs/marketPlace.spec.ts"], //path of your test script
   exclude: [],
-
   capabilities: [
     {
       build: "NodeJS WebDriverIO iOS",
       name: "Sample Test - WebDriverIO",
       isRealMobile: true,
-      deviceName: "iPhone 8",
-      platformVersion: "16.2",
+      deviceName: "iPhone 14",
+      platformVersion: "16",
       platformName: "iOS",
-      app: {
-        app_name: "Demo App", //provide your desired app name
-        app_path: join(process.cwd(), "/apps/ApiDemos-debug.apk"), //provide the local app location
-        // or
-        // app_url: "https://example.test_android.apk", //provide the url where your app is horsted or stored
-        custom_id: "12345", //provide your desired custom id
-        enableCapability: true,
-      },
+      autoAcceptAlerts: true,
+      app: "lt://APP10160601911694016052353276",
     },
   ],
-
   logLevel: "info",
   coloredLogs: true,
   screenshotPath: "./errorShots/",
