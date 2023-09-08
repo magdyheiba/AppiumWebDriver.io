@@ -1,7 +1,7 @@
-import AccessibilityPage from "../pages/accessibilityPage.ts";
-import AppPage from "../pages/appPage.ts";
-import GraphicsPage from "../pages/graphicsPage.ts";
-import ViewsPage from "../pages/viewsPage.ts";
+import AccessibilityPage from "../../pages/accessibilityPage.ts";
+import AppPage from "../../pages/appPage.ts";
+import GraphicsPage from "../../pages/graphicsPage.ts";
+import ViewsPage from "../../pages/viewsPage.ts";
 import allureReporter from "@wdio/allure-reporter";
 
 describe("My Login application", function () {

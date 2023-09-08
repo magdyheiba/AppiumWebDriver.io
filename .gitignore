@@ -4,5 +4,8 @@ node_modules
 .DS_Store
 /apps/SauceLabs.app 
 /apps/marketPlace.apk
+yarn.lock/
+.yarn
+/yarn.lock
 
 
