@@ -16,7 +16,7 @@ exports.config = {
 
   capabilities: [
     {
-      build: "NodeJS WebDriverIO iOS",
+      build: "NodeJS WebDriverIO Android",
       name: "Sample Test - WebDriverIO",
       isRealMobile: true,
       deviceName: "Galaxy S23",

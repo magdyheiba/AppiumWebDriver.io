@@ -45,6 +45,8 @@ export default class MarketPlace {
     if (await (await this.smash_button).isDisplayed()) {
       await (await this.smash_button).waitForDisplayed();
       await (await this.smash_button).click();
+    } else {
+      console.log("smash_button does not exist");
     }
   }
   /**
