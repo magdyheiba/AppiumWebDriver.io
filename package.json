@@ -22,10 +22,10 @@
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.ts",
-    "androidtests": "wdio run ./configs/wdio.android.conf.ts",
-    "iostests": "wdio run ./configs/wdio.ios.conf.ts",
+    "androidtests": "wdio run ./configs/wdio.androidOnCloud.conf.ts",
+    "iostests": "wdio run ./configs/wdio.iosOnCloud.conf.ts",
     "androidtestslocal": "wdio run ./configs/wdio.androidLocal.conf.ts",
-    "iostestslocal": "wdio run ./configs/wdio.iosSimulator.conf.ts"
+    "iostestslocal": "wdio run ./configs/wdio.iosLocal.conf.ts"
   },
   "engines": {
     "npm": ">=7.0.0",

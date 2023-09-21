@@ -33,7 +33,7 @@ export const config: Options.Testrunner = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ["../test/specs/iOSTest.spec.ts"],
+  specs: ["../test/specs/marketPlace.spec.ts"],
 
   //
   // ============
@@ -60,14 +60,16 @@ export const config: Options.Testrunner = {
   capabilities: [
     {
       "appium:platformName": "ios",
-      "appium:deviceName": "iPhone 14 Pro",
-      "appium:app": join(process.cwd(), "/apps/SauceLabs.app"),
-      "appium:platformVersion": "16.4",
-      "appium:udid": process.env.SIMULATOR_UDID,
+      "appium:deviceName": "iPhone 13",
+      "appium:app": join(process.cwd(), "/apps/BeyondMenu.ipa"),
+      "appium:platformVersion": "16.6.1",
+      "appium:udid": process.env.SIMULATOR_UDID ?? "00008110-000E65A9267A801E",
       "appium:automationName": "XCUITest",
       "appium:newCommandTimeout": 3600,
       "appium:waitForIdleTimeout": 5000,
-      "appium:simulatorStartupTimeout": 50000,
+      "appium:xcodeSigningId": "iPhone Developer",
+      "appium:xcodeOrgId": "L492M5S9JH",
+      "appium:fullReset": true,
     },
 
     // 'appium:bundleId':'com.saucelabs.mydemoapp.rn',
